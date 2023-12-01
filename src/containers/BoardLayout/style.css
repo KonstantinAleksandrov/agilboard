@@ -1,0 +1,9 @@
+.boardLayout {
+    padding: 40px;
+}
+
+.boardLayout__title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 70px;
+}
