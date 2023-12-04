@@ -1,4 +1,5 @@
 export interface ITaskProps {
     taskId: number,
-    columnName: string
+    columnName: string,
+    taskIndex: number
 }

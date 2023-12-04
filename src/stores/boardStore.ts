@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IBoardStore, boardTypes, IColumn} from "../types";
+import { IBoardStore, boardTypes, IColumn, IExtendedTask } from "../types";
 import { ITask  } from '../models'
 
 class BoardStore implements IBoardStore{
@@ -30,30 +30,45 @@ class BoardStore implements IBoardStore{
         return this.tasks.find((task)=> task.id === id)
     }
 
-    getProgressColumnById = (id: number):IColumn | undefined => {
+    getProgressColumnById = (id: number): IColumn | undefined => {
         return this.progresColumns.find((column) => column.id === id)
     }
 
-    incrementTaskCounter = (columnId: number) => {
-        const currentColumn = this.getProgressColumnById(columnId)
-        if (currentColumn) {
-            currentColumn.taskCounter++
+    setTaskInColumn = (task: ITask) => {
+        const column = this.getProgressColumnById(task.columnId)
+        
+        if (column) {
+            column.tasks.push(task)
         }
     }
 
-    decrementTaskCounter = (columnId: number) => {
-        const currentColumn = this.getProgressColumnById(columnId)
-        if (currentColumn) {
-            currentColumn.taskCounter--
-        }
-    }
-
-    setTaskCounter = () => {
-        this.progresColumns.forEach((column)=>{
-            const tasks = this.getTasks().filter((task)=>task.columnId === column.id)
-            column.taskCounter = tasks.length
+    init = () => {
+        this.tasks.forEach((task)=> {
+            this.setTaskInColumn(task)
         })
     }
+
+    removeTask = (taskId: number, columnId: number) => {
+        const currentColumn = this.getProgressColumnById(columnId) /* as IColumn */
+        if(currentColumn) {
+            console.log(255)
+            currentColumn.tasks = currentColumn.tasks.filter((task) => task.id !== taskId)
+        }
+    }
+
+    moveTaskInsideColumn = (dragTask: IExtendedTask, hoverTask: IExtendedTask) => {
+        this.removeTask(dragTask.id,dragTask.columnId)
+        const hoverColumn = this.getProgressColumnById(hoverTask.columnId) as IColumn
+        const currentTask: ITask = {
+            id: dragTask.id,
+            columnId: hoverTask.columnId,
+            userId: dragTask.userId,
+            description: dragTask.description
+        }
+        hoverColumn.tasks.splice(hoverTask.index,0,currentTask)
+        console.log(`${25}` ,this.progresColumns)
+    }
+
 }
 
 

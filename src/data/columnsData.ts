@@ -2,21 +2,21 @@ export const columns = [
     {
         id: 1,
         title: 'To do',
-        taskCounter: 0
+        tasks: []
     },
     {
         id: 2,
         title: 'In progress',
-        taskCounter: 0
+        tasks: []
     },
     {
         id: 3,
         title: 'Code review',
-        taskCounter: 0
+        tasks: []
     },
     {
         id: 4,
         title: 'Done',
-        taskCounter: 0
+        tasks: []
     }
 ]

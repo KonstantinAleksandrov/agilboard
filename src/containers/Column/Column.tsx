@@ -10,18 +10,17 @@ import { IColumn } from '../../types'
 const Column: FC<PropsWithChildren<IColumnProps>> = ({children,columnId}) => {
     const boardStore = useBoardStore()
     const currentColumn = boardStore.getProgressColumnById(columnId) as IColumn
+    console.log(`${currentColumn.title} :`,currentColumn.tasks)
 
     return (
         <div className='column'>
             <div className='column__header'>{children}</div>
             <div className='column__body'>
                 <div className='column__body-taskList column__taskList'>
-                   {boardStore.getTasks().map((task)=>{
-                        if(task.columnId === columnId) {
-                            return (
-                                <Task taskId={task.id} key={task.id} columnName={currentColumn.title}/>
-                            )
-                        }
+                   {currentColumn.tasks.map((task,index)=>{
+                        return (
+                            <Task taskId={task.id} key={task.id} columnName={currentColumn.title} taskIndex={index}/>
+                        )
                    })}
                 </div>
             </div>
