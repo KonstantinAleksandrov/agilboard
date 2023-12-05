@@ -1,4 +1,4 @@
-export type { IBoardStore } from './IBoardStore'
+export type { IBoardStore , columnType} from './IBoardStore'
 export type { boardTypes } from './commonTypes'
 export type { IColumn } from './IColumn'
-export type { IExtendedTask } from './dndTypes'
+export type { IExtendedTask, IHoverAboveTaskInsideColumn } from './dndTypes'

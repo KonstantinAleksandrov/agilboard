@@ -1,16 +1,20 @@
 import { makeAutoObservable } from "mobx";
 import { IBoardStore, boardTypes, IColumn, IExtendedTask } from "../types";
-import { ITask  } from '../models'
+import { ITask, IUser  } from '../models'
 
 class BoardStore implements IBoardStore{
     private boardTypes: boardTypes[]
     private progresColumns: IColumn[]
+    private usersColumns: IUser[]
     private tasks: ITask[]
+    private draggingTask: ITask
 
-    constructor(columnsData: IColumn[],tasks: ITask[]){
+    constructor(progresColumns: IColumn[],tasks: ITask[], usersColumns: IUser[]){
         this.boardTypes = ['type','users']
-        this.progresColumns = columnsData
+        this.progresColumns = progresColumns
         this.tasks = tasks
+        this.usersColumns = usersColumns
+        this.draggingTask = {} as ITask
         makeAutoObservable(this)
     }
 
@@ -34,7 +38,15 @@ class BoardStore implements IBoardStore{
         return this.progresColumns.find((column) => column.id === id)
     }
 
-    setTaskInColumn = (task: ITask) => {
+    getUsersColumns = () => {
+        return this.usersColumns
+    }
+
+    getUserColumnById = (id: number): IUser | undefined => {
+        return this.usersColumns.find((column) => column.id === id)
+    }
+
+    setTaskInProgressColumn = (task: ITask) => {
         const column = this.getProgressColumnById(task.columnId)
         
         if (column) {
@@ -42,22 +54,47 @@ class BoardStore implements IBoardStore{
         }
     }
 
-    init = () => {
-        this.tasks.forEach((task)=> {
-            this.setTaskInColumn(task)
-        })
+    setTaskInUserColumn = (task: ITask) => {
+        const column = this.getUserColumnById(task.userId)
+        if (column) {
+            column.tasks.push(task)
+        }
+    }
+    
+    setTaskInProgressColumnOnFirstPlace = (dragTaskId: number, hoverColumnId: number) => {
+        const column = this.getProgressColumnById(hoverColumnId)
+        const currentTask = this.getTaskById(dragTaskId)
+        if (column && currentTask) {
+            currentTask.columnId = hoverColumnId
+            column.tasks.unshift(currentTask)
+        }
     }
 
-    removeTask = (taskId: number, columnId: number) => {
-        const currentColumn = this.getProgressColumnById(columnId) /* as IColumn */
+    setTaskInUserColumnOnFirstPlace = (dragTaskId: number, hoverColumnId: number) => {
+        const column = this.getUserColumnById(hoverColumnId)
+        const currentTask = this.getTaskById(dragTaskId)
+        if (column && currentTask) {
+            currentTask.userId = hoverColumnId
+            column.tasks.unshift(currentTask)
+        }
+    }
+
+    removeTaskFromProgressColumn = (taskId: number, columnId: number) => {
+        const currentColumn = this.getProgressColumnById(columnId) 
         if(currentColumn) {
-            console.log(255)
             currentColumn.tasks = currentColumn.tasks.filter((task) => task.id !== taskId)
         }
     }
 
-    moveTaskInsideColumn = (dragTask: IExtendedTask, hoverTask: IExtendedTask) => {
-        this.removeTask(dragTask.id,dragTask.columnId)
+    removeTaskFromUserColumn = (taskId: number,columnId: number) => {
+        const currentColumn = this.getUserColumnById(columnId)
+        if(currentColumn) {
+            currentColumn.tasks = currentColumn.tasks.filter((task) => task.id !== taskId)
+        }
+    }
+
+    moveTaskInsideProgressColumn = (dragTask: IExtendedTask, hoverTask: IExtendedTask) => {
+        this.removeTaskFromProgressColumn(dragTask.id,dragTask.columnId)
         const hoverColumn = this.getProgressColumnById(hoverTask.columnId) as IColumn
         const currentTask: ITask = {
             id: dragTask.id,
@@ -66,7 +103,43 @@ class BoardStore implements IBoardStore{
             description: dragTask.description
         }
         hoverColumn.tasks.splice(hoverTask.index,0,currentTask)
-        console.log(`${25}` ,this.progresColumns)
+    }
+
+    moveTaskInsideUserColumn = (dragTask: IExtendedTask, hoverTask: IExtendedTask) => {
+        this.removeTaskFromUserColumn(dragTask.id,dragTask.userId)
+        const hoverColumn = this.getUserColumnById(hoverTask.userId) as IUser
+        const currentTask: ITask = {
+            id: dragTask.id,
+            columnId: dragTask.columnId,
+            userId: hoverTask.userId,
+            description: dragTask.description
+        }
+        hoverColumn.tasks.splice(hoverTask.index,0,currentTask)
+    }
+
+    setDraggingTask = (task: ITask) => {
+        this.draggingTask = task
+    }
+
+    removeDraggingTask = () => {
+        this.draggingTask = {} as ITask
+    }
+
+    getDraggingTask = () => {
+        return this.draggingTask
+    }
+
+    init = () => {
+        this.progresColumns.forEach((column)=> {
+            column.tasks = []
+        })
+        this.usersColumns.forEach((column)=>{
+            column.tasks = []
+        })
+        this.tasks.forEach((task)=> {
+            this.setTaskInProgressColumn(task)
+            this.setTaskInUserColumn(task)
+        })
     }
 
 }

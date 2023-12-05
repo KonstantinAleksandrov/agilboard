@@ -6,9 +6,7 @@ import { useBoardStore } from './hooks'
 function App() {
   const boardStore = useBoardStore()
 
-    useEffect(()=>{
-      boardStore.init()
-  },[])
+  
 
   return (
     <>

@@ -5,7 +5,7 @@ export const tasks: ITask[]  = [
         id: 1,
         columnId: 1,
         userId: 1,
-        description: 'Лорем ипсум долор сит.',
+        description: 'тащи меня',
     },
     {
         id: 2,
@@ -29,7 +29,7 @@ export const tasks: ITask[]  = [
         id: 5,
         columnId: 1,
         userId: 2,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: 'Lorem ipsum dolor sit amet,  labore et dolore magna aliqua.',
     },
     {
         id: 6,
@@ -47,7 +47,7 @@ export const tasks: ITask[]  = [
         id: 8,
         columnId: 2,
         userId: 3,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: 'Lorem ipsum dolor sit amet, dolore magna aliqua.',
     },
     {
         id: 9,
@@ -77,7 +77,7 @@ export const tasks: ITask[]  = [
         id: 13,
         columnId: 4,
         userId: 3,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        description: 'Lorem ipsum dolor sit amet, cliqua.',
     },
     {
         id: 14,

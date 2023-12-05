@@ -1,11 +1,13 @@
 import { BoardLayout } from './BoardLayout'
-import { Column } from './Column'
+import { ProcessColumn } from './ProcessColumn'
 import { DropDownBoardList } from './DropDownBoardList'
 import { Task } from './Task'
+import { UserColumn } from './UserColumn'
 
 export {
     BoardLayout,
-    Column,
+    ProcessColumn,
     DropDownBoardList,
-    Task
+    Task,
+    UserColumn
 }

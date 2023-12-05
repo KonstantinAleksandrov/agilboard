@@ -1,17 +1,6 @@
-import { ITask } from "../models"
-import { IExtendedTask } from '../types'
+import { IHoverAboveTaskInsideColumn } from '../types'
 
-
-interface IHoverAboveTask {
-    dragItem: IExtendedTask,
-    hoverIndex: number,
-    element: HTMLDivElement,
-    clientOffsetY: number, 
-    moveFunction: () => void
-}
-
-
-export const hoverAboveTask = (options: IHoverAboveTask) => {
+export const hoverAboveTaskInsideColumn = (options: IHoverAboveTaskInsideColumn) => {
     const {dragItem, hoverIndex, element, clientOffsetY, moveFunction} = options
     const dragIndex = dragItem.index
     
