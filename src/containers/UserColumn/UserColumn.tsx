@@ -27,7 +27,7 @@ const UserColumn: FC<PropsWithChildren<IUserColumnProps>> = ({children,userId}) 
             boardStore.removeTaskFromUserColumn(item.id,item.userId)
             item.index = 0
             item.userId = currentColumn.id
-            boardStore.setTaskInUserColumnOnFirstPlace(item.id,userId)
+            boardStore.setTaskInUserColumnOnGivenPlace(item.id,userId,boardStore.getHoverTask().index)
         },
     })
 

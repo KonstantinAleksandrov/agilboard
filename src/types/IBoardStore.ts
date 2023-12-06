@@ -18,10 +18,13 @@ export interface IBoardStore {
     removeTaskFromUserColumn: (taskId: number, columnId: number) => void
     moveTaskInsideProgressColumn: (dragTask: IExtendedTask, hoverTask: IExtendedTask) => void
     moveTaskInsideUserColumn: (dragTask: IExtendedTask, hoverTask: IExtendedTask) => void
-    setTaskInProgressColumnOnFirstPlace: (dragTaskId: number, hoverColumnId: number) => void
-    setTaskInUserColumnOnFirstPlace: (dragTaskId: number, hoverColumnId: number) => void
+    setTaskInProgressColumnOnGivenPlace: (dragTaskId: number, hoverColumnId: number, index: number) => void
+    setTaskInUserColumnOnGivenPlace: (dragTaskId: number, hoverColumnId: number,index: number) => void
     setDraggingTask: (task: ITask) => void
     removeDraggingTask: () => void
     getDraggingTask: () => ITask
     getUsersColumns: () => IUser[]
+    setHoverTask: (task: IExtendedTask) => void
+    removeHoverTask: () => void
+    getHoverTask: () => IExtendedTask
 }

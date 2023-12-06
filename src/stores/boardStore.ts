@@ -8,6 +8,7 @@ class BoardStore implements IBoardStore{
     private usersColumns: IUser[]
     private tasks: ITask[]
     private draggingTask: ITask
+    private hoverTask: IExtendedTask
 
     constructor(progresColumns: IColumn[],tasks: ITask[], usersColumns: IUser[]){
         this.boardTypes = ['type','users']
@@ -15,6 +16,7 @@ class BoardStore implements IBoardStore{
         this.tasks = tasks
         this.usersColumns = usersColumns
         this.draggingTask = {} as ITask
+        this.hoverTask = {} as IExtendedTask
         makeAutoObservable(this)
     }
 
@@ -61,21 +63,21 @@ class BoardStore implements IBoardStore{
         }
     }
     
-    setTaskInProgressColumnOnFirstPlace = (dragTaskId: number, hoverColumnId: number) => {
+    setTaskInProgressColumnOnGivenPlace = (dragTaskId: number, hoverColumnId: number,index: number) => {
         const column = this.getProgressColumnById(hoverColumnId)
         const currentTask = this.getTaskById(dragTaskId)
         if (column && currentTask) {
             currentTask.columnId = hoverColumnId
-            column.tasks.unshift(currentTask)
+            column.tasks.splice(index,0,currentTask)
         }
     }
 
-    setTaskInUserColumnOnFirstPlace = (dragTaskId: number, hoverColumnId: number) => {
+    setTaskInUserColumnOnGivenPlace = (dragTaskId: number, hoverColumnId: number, index: number) => {
         const column = this.getUserColumnById(hoverColumnId)
         const currentTask = this.getTaskById(dragTaskId)
         if (column && currentTask) {
             currentTask.userId = hoverColumnId
-            column.tasks.unshift(currentTask)
+            column.tasks.splice(index,0,currentTask)
         }
     }
 
@@ -127,6 +129,18 @@ class BoardStore implements IBoardStore{
 
     getDraggingTask = () => {
         return this.draggingTask
+    }
+
+    setHoverTask = (task: IExtendedTask) => {
+        this.hoverTask = task
+    }
+
+    removeHoverTask = () => {
+        this.hoverTask = {} as IExtendedTask
+    }
+
+    getHoverTask = () => {
+        return this.hoverTask
     }
 
     init = () => {

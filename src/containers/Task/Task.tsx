@@ -66,6 +66,8 @@ const Task: FC<ITaskProps> = ({taskId,columnName,taskIndex,userData,columnType})
                 return
             }
 
+            boardStore.setHoverTask({ ...currentTask, index: taskIndex })
+
             const options = getDropOptions(item,monitor)
             
             if (options) {

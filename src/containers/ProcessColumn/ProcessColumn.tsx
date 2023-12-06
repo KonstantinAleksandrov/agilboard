@@ -28,7 +28,7 @@ const ProcessColumn: FC<PropsWithChildren<IProcessColumnProps>> = ({children,col
             boardStore.removeTaskFromProgressColumn(item.id,item.columnId)
             item.index = 0
             item.columnId = currentColumn.id
-            boardStore.setTaskInProgressColumnOnFirstPlace(item.id,columnId)
+            boardStore.setTaskInProgressColumnOnGivenPlace(item.id,columnId,boardStore.getHoverTask().index)
         },
     })
 
