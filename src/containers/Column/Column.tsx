@@ -6,7 +6,15 @@ import { Task } from '../Task'
 import { useDrop } from 'react-dnd'
 import { IExtendedTask } from '../../types'
 
-const Column: FC<PropsWithChildren<IColumnProps>> = ({children,hoverHandler,tasks,columnId,boardType}) => {
+const Column: FC<PropsWithChildren<IColumnProps>> = (props) => {
+    const {
+        children,
+        hoverHandler,
+        tasks,columnId,
+        moveFunction,
+        propertyCheckDifference,
+        taskRenderSettings
+    } = props
 
     const [ , dropRef] = useDrop<IExtendedTask>({
         accept: 'card',
@@ -15,11 +23,10 @@ const Column: FC<PropsWithChildren<IColumnProps>> = ({children,hoverHandler,task
                 handlerId: monitor.getHandlerId(),
             }              
         },
-        hover(item, monitor) {
+        hover(item) {
             hoverHandler(item,columnId)
         },
     })
-
 
     return (
         <div className='column'>
@@ -31,9 +38,10 @@ const Column: FC<PropsWithChildren<IColumnProps>> = ({children,hoverHandler,task
                             <Task 
                                 taskId={task.id} 
                                 key={task.id} 
-                                /* columnName={columnName}  */
                                 taskIndex={index}
-                                columnType={boardType}
+                                moveFunction={moveFunction}
+                                propertyCheckDifference={propertyCheckDifference}
+                                taskRenderSettings={taskRenderSettings}
                             />
                         )
                    })}

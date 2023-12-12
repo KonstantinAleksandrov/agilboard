@@ -1,7 +1,7 @@
 import { IHoverAboveTaskInsideColumn } from '../types'
 
 export const hoverAboveTaskInsideColumn = (options: IHoverAboveTaskInsideColumn) => {
-    const {dragItem, hoverIndex, element, clientOffsetY, moveFunction} = options
+    const {dragItem, hoverIndex, element, clientOffsetY, moveFunction, currentTask} = options
     const dragIndex = dragItem.index
 
     if (dragItem.index === hoverIndex) {
@@ -21,8 +21,7 @@ export const hoverAboveTaskInsideColumn = (options: IHoverAboveTaskInsideColumn)
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
     }
-
-   moveFunction()
+    moveFunction(dragItem,currentTask)
 
    dragItem.index = hoverIndex
 }

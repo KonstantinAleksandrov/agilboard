@@ -1,12 +1,9 @@
-interface IUserData {
-    name: string,
-    avatar?: string
-}
+import { IExtendedTask, ITaskRenderSettings } from "../../types"
 
 export interface ITaskProps {
     taskId: number,
-    columnName?: string,
-    userData?: IUserData
     taskIndex: number
-    columnType: 'progress' | 'user'
+    propertyCheckDifference: 'columnId' | 'userId',
+    moveFunction: (dragTask: IExtendedTask, hoverTask: IExtendedTask) => void
+    taskRenderSettings: ITaskRenderSettings
 }

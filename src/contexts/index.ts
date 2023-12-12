@@ -1,5 +1,5 @@
-import { BoardContext } from './boardContext'
+import { RootContext } from './boardContext'
 
 export { 
-    BoardContext
+    RootContext
 }

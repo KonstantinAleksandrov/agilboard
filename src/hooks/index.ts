@@ -1,5 +1,5 @@
-import { useBoardStore } from "./useBoardStore";
+import { useRootStore } from "./useRootStore";
 
 export { 
-    useBoardStore,
+    useRootStore,
 }

@@ -1,17 +1,17 @@
 import './style.css'
 import { FC , useEffect} from 'react'
-import { UserColumn, Column } from '../../containers'
+import { Column } from '../../containers'
 import { observer } from 'mobx-react-lite'
-import { useBoardStore } from '../../hooks'
+import { useRootStore } from '../../hooks'
 import { UserColumnTitle } from '../UserColumnTitle'
 import { IExtendedTask } from '../../types'
 
 const UsersBoard: FC = ({}) => {
-    useEffect(()=>{
+   /*  useEffect(()=>{
         boardStore.init()
     },[])
 
-    const boardStore = useBoardStore()
+    const boardStore = useRootStore()
 
     const removeTaskFromColumn = (taskId: number,columnId: number) => {
         boardStore.removeTaskFromUserColumn(taskId,columnId) 
@@ -30,20 +30,13 @@ const UsersBoard: FC = ({}) => {
         task.index = 0
         task.userId = columnId
         setTaskInColumn(task.id,columnId)
-    }
+    } */
 
 
     return (
         <div className='usersBoard'>
            {boardStore.getUsersColumns().map((column)=>{
                 return (
-                   /*  <UserColumn userId={column.id} key={column.id}>
-                        <UserColumnTitle 
-                            taskNumber={column.tasks.length || 0} 
-                            avatar={column.avatar} 
-                            fullName={column.name}
-                        />
-                    </UserColumn> */
                     <Column 
                     tasks={column.tasks}
                     columnId={column.id}

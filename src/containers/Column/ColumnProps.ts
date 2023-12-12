@@ -1,9 +1,11 @@
 import { ITask } from "../../models"
-import { IExtendedTask } from "../../types"
+import { IExtendedTask, ITaskRenderSettings } from "../../types"
 
 export interface IColumnProps {
-    tasks: ITask[],
+    tasks: ITask[]
     hoverHandler: (task: IExtendedTask,columnId: number) => void
     columnId: number
-    boardType: 'progress' | 'user'
+    propertyCheckDifference: 'columnId' | 'userId',
+    moveFunction: (dragTask: IExtendedTask, hoverTask: IExtendedTask) => void
+    taskRenderSettings: ITaskRenderSettings
 }

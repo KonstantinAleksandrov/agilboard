@@ -1,11 +1,11 @@
 import './style.css'
 import { FC } from 'react'
 import { IDropDownBoardListProps } from './DropDownBoardListProps'
-import { useBoardStore } from '../../hooks'
+import { useRootStore } from '../../hooks'
 import { observer } from 'mobx-react-lite'
 
 const DropDownBoardList: FC<IDropDownBoardListProps> = ({changeHandler}) => {
-    const store = useBoardStore()
+    const pageBoardStore = useRootStore().getPageBoardStore()
 
     return (
         <div className='dropDownBoardList'>
@@ -13,7 +13,7 @@ const DropDownBoardList: FC<IDropDownBoardListProps> = ({changeHandler}) => {
                 className={`dropdown__select`}
                 onChange={changeHandler}
             >
-                {store.getBoardTypes().map((boardType) => {
+                {pageBoardStore.getBoardTypes().map((boardType) => {
                     return (
                         <option value={boardType} className='dropdown__option' key={boardType}>
                         {boardType}
