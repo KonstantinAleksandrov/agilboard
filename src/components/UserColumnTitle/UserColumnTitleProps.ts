@@ -1,5 +1,5 @@
 export interface IUserColumnTitleProps {
-    avatar?: string,
-    fullName: string,
-    taskNumber: number
+  avatar?: string;
+  fullName: string;
+  taskNumber: number;
 }

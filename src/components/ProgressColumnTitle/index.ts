@@ -1,1 +1,1 @@
-export { default as ProgressColumnTitle } from './ProgressColumnTitle'
+export { default as ProgressColumnTitle } from './ProgressColumnTitle';

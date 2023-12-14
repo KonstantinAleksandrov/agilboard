@@ -1,5 +1,3 @@
-import { RootContext } from './boardContext'
+import { RootContext } from './boardContext';
 
-export { 
-    RootContext
-}
+export { RootContext };

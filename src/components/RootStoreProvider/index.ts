@@ -1,1 +1,1 @@
-export { default as RootStoreProvider } from './RootStoreProvider'
+export { default as RootStoreProvider } from './RootStoreProvider';

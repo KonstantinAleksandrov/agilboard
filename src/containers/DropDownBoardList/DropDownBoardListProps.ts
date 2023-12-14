@@ -1,3 +1,3 @@
-export interface IDropDownBoardListProps{
-    changeHandler: (e: React.ChangeEvent) => void
+export interface IDropDownBoardListProps {
+  changeHandler: (e: React.ChangeEvent) => void;
 }

@@ -1,1 +1,1 @@
-export type boardTypes = 'type' | 'users'
+export type boardTypes = 'type' | 'users';

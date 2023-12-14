@@ -1,1 +1,1 @@
-export { default as DropDownBoardList } from './DropDownBoardList'
+export { default as DropDownBoardList } from './DropDownBoardList';

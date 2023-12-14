@@ -1,5 +1,3 @@
-import { useRootStore } from "./useRootStore";
+import { useRootStore } from './useRootStore';
 
-export { 
-    useRootStore,
-}
+export { useRootStore };

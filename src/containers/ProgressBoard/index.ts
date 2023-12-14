@@ -1,1 +1,1 @@
-export { default as ProgressBoard } from './ProgressBoard'
+export { default as ProgressBoard } from './ProgressBoard';

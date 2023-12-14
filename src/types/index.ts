@@ -1,12 +1,12 @@
-export type { IBoardStore2 , columnType} from './IBoardStore2'
-export type { boardTypes } from './commonTypes'
-export type { IColumn } from './IColumn'
-export type { IExtendedTask, IHoverAboveTaskInsideColumn } from './dndTypes'
-export type { IRootStore } from './IRootStore'
-export type { ITasksStore } from './ITasksStore'
-export type { IUsersStore } from './IUsersStore'
-export type { IPageBoardStore } from './IPageBoardStore'
-export type { IProgressBoardStore } from './IProgressBoardStore'
-export type { IUsersBoardStore } from './IUsersBoardStore'
-export type { ITaskRenderSettings } from './ITaskRenderSettings'
-export type { IBoardStore } from './IBoardStore'
+export type { IBoardStore2, columnType } from './IBoardStore2';
+export type { boardTypes } from './commonTypes';
+export type { IColumn } from './IColumn';
+export type { IExtendedTask, IHoverAboveTaskInsideColumn } from './dndTypes';
+export type { IRootStore } from './IRootStore';
+export type { ITasksStore } from './ITasksStore';
+export type { IUsersStore } from './IUsersStore';
+export type { IPageBoardStore } from './IPageBoardStore';
+export type { IProgressBoardStore } from './IProgressBoardStore';
+export type { IUsersBoardStore } from './IUsersBoardStore';
+export type { ITaskRenderSettings } from './ITaskRenderSettings';
+export type { IBoardStore } from './IBoardStore';

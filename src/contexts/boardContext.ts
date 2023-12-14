@@ -1,4 +1,4 @@
-import { createContext } from "react";
-import { IRootStore } from "../types";
+import { createContext } from 'react';
+import { IRootStore } from '../types';
 
-export const RootContext = createContext({} as IRootStore)
+export const RootContext = createContext({} as IRootStore);

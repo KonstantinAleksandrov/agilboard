@@ -1,12 +1,12 @@
-import { BoardLayout } from './components'
-import { observer } from 'mobx-react-lite'
+import { BoardLayout } from './components';
+import { observer } from 'mobx-react-lite';
 
 function App() {
   return (
     <>
-     <BoardLayout/>
+      <BoardLayout />
     </>
-  )
+  );
 }
 
-export default observer(App)
+export default observer(App);

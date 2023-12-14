@@ -1,6 +1,6 @@
-import { IUser } from "../models"
+import { IUser } from '../models';
 
 export interface IUsersStore {
-    getUserById: (id: number) => IUser | undefined
-    getUsers: () => IUser[]
+  getUserById: (id: number) => IUser | undefined;
+  getUsers: () => IUser[];
 }

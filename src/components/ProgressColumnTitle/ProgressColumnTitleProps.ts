@@ -1,4 +1,4 @@
 export interface IProgressColumnTitleProps {
-    title: string,
-    taskNumber: number
+  title: string;
+  taskNumber: number;
 }

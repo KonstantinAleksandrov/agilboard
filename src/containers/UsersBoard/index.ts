@@ -1,1 +1,1 @@
-export { default as UsersBoard } from './UsersBoard'
+export { default as UsersBoard } from './UsersBoard';

@@ -1,1 +1,1 @@
-export { default as BoardLayout } from './BoardLayout'
+export { default as BoardLayout } from './BoardLayout';
