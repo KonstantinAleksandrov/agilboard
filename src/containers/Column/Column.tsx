@@ -10,12 +10,14 @@ const Column: FC<PropsWithChildren<IColumnProps>> = (props) => {
     const {
         children,
         hoverHandler,
-        tasks,columnId,
+        tasks,
+        columnId,
         moveFunction,
         propertyCheckDifference,
         taskRenderSettings
     } = props
 
+    // функция hoverHandler срабатывает когда задача находится над колонкой
     const [ , dropRef] = useDrop<IExtendedTask>({
         accept: 'card',
         collect(monitor) {

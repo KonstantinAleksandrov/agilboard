@@ -1,5 +1,5 @@
 .column {
-    flex: 0 1 auto;
+    flex: 0 1 25%;
     height: 100%;
     min-width: 250px;
     background-color: rgb(222, 226, 229);
@@ -14,10 +14,15 @@
     margin: 0  10px 15px 10px;
 }
 
+.column__body {
+    height: 100%;
+}
+
 .column__taskList {
     padding: 0 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     min-height: 40px;
+    height: 100%;
 }

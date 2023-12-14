@@ -1,5 +1,6 @@
 import { IHoverAboveTaskInsideColumn } from '../types'
 
+// логика смены мест мужду задачами
 export const hoverAboveTaskInsideColumn = (options: IHoverAboveTaskInsideColumn) => {
     const {dragItem, hoverIndex, element, clientOffsetY, moveFunction, currentTask} = options
     const dragIndex = dragItem.index
@@ -21,6 +22,7 @@ export const hoverAboveTaskInsideColumn = (options: IHoverAboveTaskInsideColumn)
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return
     }
+
     moveFunction(dragItem,currentTask)
 
    dragItem.index = hoverIndex

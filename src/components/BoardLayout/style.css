@@ -2,6 +2,11 @@
     padding: 40px;
 }
 
+.boardLayout__board {
+    display: flex;
+    justify-content: center;
+}
+
 .boardLayout__title {
     font-size: 32px;
     font-weight: 600;

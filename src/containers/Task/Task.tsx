@@ -18,45 +18,29 @@ const Task: FC<ITaskProps> = (props) => {
         taskRenderSettings
     } = props
     
-    const ref = useRef<HTMLDivElement>(null)
-    const rootStore = useRootStore()
-    const tasksStore = rootStore.getTasksStore()
-    const pageBoardStore = rootStore.getPageBoardStore()
-    const currentTask = tasksStore.getTaskById(taskId) as ITask
+    const ref = useRef<HTMLDivElement>(null) // для хранения перетаскиваемого DOM елемента
+    const rootStore = useRootStore()  // корневой стор
+    const tasksStore = rootStore.getTasksStore() // стор задач
+    const pageBoardStore = rootStore.getPageBoardStore()// стор страницы с досками
+    const currentTask = tasksStore.getTaskById(taskId) as ITask  // данные текущей задачи
 
-    const progressColumn = pageBoardStore.getProgressBoardStore().getColumnById(currentTask.columnId)?.title
-    const user = rootStore.getUsersStore().getUserById(currentTask.userId) as IUser
+    const progressColumn = pageBoardStore.getProgressBoardStore().getColumnById(currentTask.columnId)?.title // название колонки прогресса в котой находится текущая задача
+    const user = rootStore.getUsersStore().getUserById(currentTask.userId) as IUser // пользователь которому принадлежит текущая задача
 
+
+    // получаем настройки для обработки события drop 
     const getDropOptions = (dragTask: IExtendedTask,monitor: DropTargetMonitor<IExtendedTask>) => {
-       /*  if(columnType === 'progress') { */
-           /*  if(dragTask.columnId !== currentTask.columnId) {
-                return 
-            } */
-
             return {
-                dragItem: dragTask,
-                currentTask: { ...currentTask, index: taskIndex },
-                hoverIndex: taskIndex,
-                element: ref.current,
-                clientOffsetY: monitor.getClientOffset()?.y as number,
-                moveFunction/* : boardStore.moveTaskInsideProgressColumn.bind(boardStore, dragTask, { ...currentTask, index: taskIndex }) */
-            } /* as IHoverAboveTaskInsideColumn */
-
-       /*  }else if (columnType === 'user') {
-            if(dragTask.userId !== currentTask.userId) {
-                return
+                dragItem: dragTask, // зачада которую тащим
+                currentTask: { ...currentTask, index: taskIndex }, // зачада над которой вызывается эта функция 
+                hoverIndex: taskIndex, // индекс задачи  над которой вызывается эта функция 
+                element: ref.current,  // Dom елемент над которым вызывается эта функция 
+                clientOffsetY: monitor.getClientOffset()?.y as number, // возвращает текущие координаты мыши относительно окна браузера
+                moveFunction  // функция которя будет менять местами задачи внутри колонки 
             }
-
-            return {
-                dragItem: dragTask,
-                hoverIndex: taskIndex,
-                element: ref.current,
-                clientOffsetY: monitor.getClientOffset()?.y as number,
-                moveFunction: boardStore.moveTaskInsideUserColumn.bind(boardStore, dragTask, { ...currentTask, index: taskIndex })
-            } as IHoverAboveTaskInsideColumn
-        } */
     }
 
+    // функция работает когда мы начинаем тащить задачу
     const [ , drag] = useDrag({
         type: 'card',
         item: {...currentTask,index: taskIndex},
@@ -72,6 +56,7 @@ const Task: FC<ITaskProps> = (props) => {
         }
     })
 
+    // функция отрабатывает когда мы бросаем задачу на другую задачу
     const [, drop] = useDrop<IExtendedTask>({
         accept: 'card',
         collect: (monitor) => monitor.getHandlerId(),
@@ -80,20 +65,13 @@ const Task: FC<ITaskProps> = (props) => {
                 return
             }
 
+            // проверка на то что перетаскиваем внутри колонки а не между
             if(item[propertyCheckDifference] !== currentTask[propertyCheckDifference]) {
                 return 
             }
 
             pageBoardStore.setHoverTask({ ...currentTask, index: taskIndex })
             hoverAboveTaskInsideColumn(getDropOptions(item,monitor) as IHoverAboveTaskInsideColumn)
-
-
-            /* const options = getDropOptions(item,monitor)
-            
-            if (options) {
-                hoverAboveTaskInsideColumn(options)
-            } */
-
         },
   })
 

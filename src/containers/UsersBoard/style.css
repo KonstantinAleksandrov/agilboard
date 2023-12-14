@@ -1,6 +1,8 @@
 .usersBoard {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
+    max-width: 1400px;
+    width: max-content;
 }

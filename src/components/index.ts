@@ -1,13 +1,11 @@
 import { RootStoreProvider } from "./RootStoreProvider";
-import { ProgressBoard } from "./ProgressBoard";
-import { UsersBoard } from './UsersBoard'
 import { ProgressColumnTitle } from './ProgressColumnTitle'
 import { UserColumnTitle } from "./UserColumnTitle";
+import { BoardLayout } from './BoardLayout'
 
 export {
     RootStoreProvider,
-    ProgressBoard,
-    UsersBoard,
     ProgressColumnTitle,
-    UserColumnTitle
+    UserColumnTitle,
+    BoardLayout
 }
